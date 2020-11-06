@@ -12,8 +12,6 @@ var hourText = [
     "4:00pm",
     "5:00pm"
 ];
-var saveBtn = $("<button>")
-var buttonId = "123456789".split();
 
 //dynamically setting up the HTML elements
 function blockSetup() {
@@ -34,9 +32,16 @@ function blockSetup() {
         textCol.attr("class", "p-2 bd-highlight col-md-7");
         saveCol.attr("class", "p-2 bd-highlight col-md-2");
         hourBlock.attr("class", "p-2 bd-highlight mt-2");
-        textBlock.attr("class", "text col");
+        textBlock.attr({
+            class: "text col",
+            id: "textBlock" + i,
+            value: i
+        });
         saveBtn.html('<i class="far fa-calendar-plus"></i>');
-        saveBtn.attr("class", "p-2 bd-highlight save-btn mb-2 mt-1 p-3");
+        saveBtn.attr({
+            class: "p-2 bd-highlight save-btn mb-2 mt-1 p-3",
+            id: "button" + i
+        });
 
         $(".container").append(timeBlockRow);
         hourBlock.text(hourText[i]);
@@ -49,13 +54,23 @@ function blockSetup() {
 
 blockSetup();
 
-// setting text input into local storage
-function setBtn(event) {
+//setting text input into local storage
+function setBtn() {
     for (var i = 0; i < hourText.length; i++) {
-        saveBtn = $("<button>");
-        saveBtn.attr("id", "button" + i);
-        
-
+        $(document).on("click", "#button" + i, function() {
+            console.log("clicked");
+            // localStorage.setItem(i, "textBlock" + i);
+            // console.log(setItem);
+        });
     }
-}
+};
 setBtn();
+
+//get local storage item
+// function getItem() {
+//     for (var i = 0; i < hourText.length; i++) {
+
+//     }
+// }
+
+
