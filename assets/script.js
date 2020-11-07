@@ -22,7 +22,7 @@ function blockSetup() {
         var saveCol = $("<div>");
         var hourBlock = $("<div>");
         var textBlock = $("<textarea>");
-        saveBtn = $("<button>");
+        var saveBtn = $("<button>");
 
         timeBlockRow.attr({
             class: "time-block d-flex bd-highlight p-3",
@@ -31,12 +31,16 @@ function blockSetup() {
         hourCol.attr("class", "p-2 bd-highlight col-md-3");
         textCol.attr("class", "p-2 bd-highlight col-md-7");
         saveCol.attr("class", "p-2 bd-highlight col-md-2");
-        hourBlock.attr("class", "p-2 bd-highlight mt-2");
+        hourBlock.attr({
+            class: "p-2 bd-highlight mt-2",
+            id: "hourBlock" + i
+        });
         textBlock.attr({
             class: "text col",
             id: "textBlock" + i,
             value: i
         });
+        textBlock.text(localStorage.getItem(hourText[i]));
         saveBtn.html('<i class="far fa-calendar-plus"></i>');
         saveBtn.attr({
             class: "p-2 bd-highlight save-btn mb-2 mt-1 p-3",
@@ -49,22 +53,26 @@ function blockSetup() {
         hourCol.append(hourBlock);
         textCol.append(textBlock);
         saveCol.append(saveBtn);
-    }
+        setStorage(i);
+    };
 }
 
 blockSetup();
-
-//setting text input into local storage
-function setBtn() {
-    for (var i = 0; i < hourText.length; i++) {
-        $(document).on("click", "#button" + i, function() {
-            console.log("clicked");
-            // localStorage.setItem(i, "textBlock" + i);
-            // console.log(setItem);
-        });
-    }
+//set local storage
+function setStorage(index) {
+    // var btnVal = $("button").each(function() {
+    //     $("button").val();
+    // })
+    // console.log(btnVal);
+    $("#button" + index).on("click", function() {
+        // console.log($("#textBlock0").val());
+        localStorage.setItem($("#hourBlock" + index).text(), $("#textBlock" + index).val());
+    })
 };
-setBtn();
+
+// setStorage(0);
+// setStorage(1);
+// setStorage(2);
 
 //get local storage item
 // function getItem() {
