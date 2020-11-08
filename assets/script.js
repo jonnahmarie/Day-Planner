@@ -21,8 +21,9 @@ function blockSetup() {
         var textCol = $("<div>");
         var saveCol = $("<div>");
         var hourBlock = $("<div>");
+        var p = $("<p>");
         var textBlock = $("<textarea>");
-        var saveBtn = $("<div>");
+        var saveBtn = $("<button>");
         var hourValue = ["9","10","11","12","13","14","15","16","17"];
 
         timeBlockRow.attr({
@@ -51,7 +52,8 @@ function blockSetup() {
         });
 
         $(".container").append(timeBlockRow);
-        hourBlock.text(hourText[i]);
+        p.text(hourText[i]);
+        hourBlock.append(p);
         timeBlockRow.append(hourCol, textCol, saveCol);
         hourCol.append(hourBlock);
         textCol.append(textBlock);
