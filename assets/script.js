@@ -22,13 +22,14 @@ function blockSetup() {
         var saveCol = $("<div>");
         var hourBlock = $("<div>");
         var textBlock = $("<textarea>");
-        var saveBtn = $("<button>");
+        var saveBtn = $("<div>");
+        var hourValue = ["9","10","11","12","13","14","15","16","17"];
 
         timeBlockRow.attr({
-            class: "time-block d-flex bd-highlight p-3",
+            class: "time-block d-flex bd-highlight p-3 row",
             id: "timeblock" + i
         });
-        hourCol.attr("class", "p-2 bd-highlight col-md-3");
+        hourCol.attr("class", "p-2 bd-highlight col-md-3 hour");
         textCol.attr("class", "p-2 bd-highlight col-md-7");
         saveCol.attr("class", "p-2 bd-highlight col-md-2");
         hourBlock.attr({
@@ -38,12 +39,14 @@ function blockSetup() {
         textBlock.attr({
             class: "text col",
             id: "textBlock" + i,
-            value: i
+            value: hourValue[i]
         });
+        //gets local storage
         textBlock.text(localStorage.getItem(hourText[i]));
+
         saveBtn.html('<i class="far fa-calendar-plus"></i>');
         saveBtn.attr({
-            class: "p-2 bd-highlight save-btn mb-2 mt-1 p-3",
+            class: "p-2 bd-highlight saveBtn mb-2 mt-1 p-3",
             id: "button" + i
         });
 
@@ -55,30 +58,29 @@ function blockSetup() {
         saveCol.append(saveBtn);
         setStorage(i);
     };
-}
+};
 
 blockSetup();
 //set local storage
 function setStorage(index) {
-    // var btnVal = $("button").each(function() {
-    //     $("button").val();
-    // })
-    // console.log(btnVal);
     $("#button" + index).on("click", function() {
         // console.log($("#textBlock0").val());
         localStorage.setItem($("#hourBlock" + index).text(), $("#textBlock" + index).val());
     })
 };
 
-// setStorage(0);
-// setStorage(1);
-// setStorage(2);
+//color coding blocks according to time (past, present, future)
+let currentTime = moment().hour();
+$("textarea").each(function(index) {
+    var textHour = $("#textBlock" + index).attr("value");
+    var textValue = parseInt(textHour);
+    // console.log(textValue);
 
-//get local storage item
-// function getItem() {
-//     for (var i = 0; i < hourText.length; i++) {
-
-//     }
-// }
-
-
+    if (textValue === currentTime) {
+        $(this).addClass("text col present");
+    } else if (textValue < currentTime) {
+        $(this).addClass("text col past");
+    } else {
+        $(this).addClass("text col future");
+    };
+});
