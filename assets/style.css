@@ -2,23 +2,41 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
+  background-color: #F5CCE0;
+}
+
+p {
+  color: #243873;
+  font-size: 18pt;
+}
+
+h1 {
+  color: #ffffff;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 textarea{
-  background: transparent;
+  background-color: #fff;
   border: none;
   resize: none;
   color: #000000;
   border-left: 1px solid black;
   padding: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+button {
+  width: 100%;
+  height: 100%;
 }
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
+  background-color: #3E9CC5;
   color: black;
   border-radius: 0;
-  border-bottom: 10px solid black;
+  border-bottom: 20px double #243873;
 }
 
 .description{
@@ -27,45 +45,54 @@ textarea{
 
 .time-block{
   text-align: center;
-  border-radius: 15px;
+  background-color: transparent;
 }
 
 .row {
   white-space: pre-wrap;
-  height: 80px;
-  border-top: 1px solid white;;
+  border-radius: 15px;
+  background-color: rgb(250, 249, 244);
+  margin: 5px;
 }
 
 .hour {
-  background-color: #ffffff;
+  background-color: transparent;
   color: #000000;
-  border-top: 1px dashed #000000;
 }
 
 .past {
-  background-color: #d3d3d3;
-  color: white;
+  background-color: #97CDE6;
+  color: #243873;
 }
 
 .present {
-  background-color: #ff6961;
-  color: white;
+  background-color: #F5CCE0;
+  color: #243873;
 }
 
 .future {
-  background-color: #77dd77;
-  color: white;
+  background-color: #C8CEE9;
+  color: #243873;
 }
 
 .saveBtn {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #06AED5;
+  background-color: #B97AB4;
   color: white;
 }
 
 .saveBtn i:hover {
-  font-size: 20px;
-  transition: all .3s ease-in-out;
+  font-size: 18px;
+  color: #97CDE6;
+  transition: all .2s ease-in-out;
+}
+
+#currentDay {
+  font-weight: bold;
+}
+
+#tagline {
+  font-style: italic;
 }
